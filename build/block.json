@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "abel-blocks/bitcoin-price-component",
+  "version": "0.1.0",
+  "title": "Bitcoin Price Component",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "A simple Bitcoin price component to display latest prices.",
+  "keywords": [
+    "bitcoin",
+    "price",
+    "component"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Current Bitcoin Prices:"
+    },
+    "btnText": {
+      "type": "string",
+      "default": "Refresh"
+    },
+    "incLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "incBtn": {
+      "type": "boolean",
+      "default": true
+    },
+    "incUSD": {
+      "type": "boolean",
+      "default": true
+    },
+    "incGBP": {
+      "type": "boolean",
+      "default": true
+    },
+    "incEUR": {
+      "type": "boolean",
+      "default": true
+    },
+    "incDisclaimer": {
+      "type": "boolean",
+      "default": true
+    },
+    "incUpdateTime": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "number",
+      "default": 16
+    }
+  },
+  "textdomain": "bitcoin-price-component",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
