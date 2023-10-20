@@ -17,6 +17,10 @@
 			"type": "string",
 			"default": "Current Bitcoin Prices:"
 		},
+		"labelLevel": {
+			"type": "string",
+			"default": "h3"
+		},
 		"btnText": {
 			"type": "string",
 			"default": "Refresh"
@@ -24,6 +28,10 @@
 		"incLabel": {
 			"type": "boolean",
 			"default": true
+		},
+		"txtHtml": {
+			"type": "string",
+			"default": "p"
 		},
 		"incBtn": {
 			"type": "boolean",

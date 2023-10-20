@@ -1,3 +1,4 @@
+import { __ } from "@wordpress/i18n";
 import { useBlockProps } from "@wordpress/block-editor";
 
 export default function Save({ attributes }) {
@@ -8,38 +9,52 @@ export default function Save({ attributes }) {
 			fontSize: `${attributes.fontSize}px`,
 		},
 	});
+	const LabelLevel = attributes.labelLevel || "h3";
+	const TextTag = attributes.txtHtml || "p";
 	return (
 		<div {...blockProps} className="bitcoin-price-block">
-			{attributes.incLabel && <h3 className="bpc-label">{attributes.label}</h3>}
+			{attributes.incLabel && (
+				<LabelLevel className="bpc-label">{attributes.label}</LabelLevel>
+			)}
 			{attributes.incUpdateTime && (
-				<p className="bpc-updated">
-					<strong>Updated:</strong>{" "}
-					<span className="updated-time-placeholder">Loading...</span>
-				</p>
+				<TextTag className="bpc-updated">
+					<strong>{__("Updated:", "bitcoin-price-component")}</strong>{" "}
+					<span className="updated-time-placeholder">
+						{__("Loading...", "bitcoin-price-component")}
+					</span>
+				</TextTag>
 			)}
 			{attributes.incUSD && (
-				<p data-currency="USD">
+				<TextTag data-currency="USD">
 					<strong>USD:</strong>{" "}
-					<span className="rate-placeholder">Loading...</span>
-				</p>
+					<span className="rate-placeholder">
+						{__("Loading...", "bitcoin-price-component")}
+					</span>
+				</TextTag>
 			)}
 			{attributes.incGBP && (
-				<p data-currency="GBP">
+				<TextTag data-currency="GBP">
 					<strong>GBP:</strong>{" "}
-					<span className="rate-placeholder">Loading...</span>
-				</p>
+					<span className="rate-placeholder">
+						{__("Loading...", "bitcoin-price-component")}
+					</span>
+				</TextTag>
 			)}
 			{attributes.incEUR && (
-				<p data-currency="EUR">
+				<TextTag data-currency="EUR">
 					<strong>EUR:</strong>{" "}
-					<span className="rate-placeholder">Loading...</span>
-				</p>
+					<span className="rate-placeholder">
+						{__("Loading...", "bitcoin-price-component")}
+					</span>
+				</TextTag>
 			)}
 			{attributes.incDisclaimer && (
-				<p className="bpc-disclaimer">
-					<strong>Disclaimer:</strong>{" "}
-					<span className="disclaimer-placeholder">Loading...</span>
-				</p>
+				<TextTag className="bpc-disclaimer">
+					<strong>{__("Disclaimer:", "bitcoin-price-component")}</strong>{" "}
+					<span className="disclaimer-placeholder">
+						{__("Loading...", "bitcoin-price-component")}
+					</span>
+				</TextTag>
 			)}
 			{attributes.incBtn && (
 				<button className="bpc-refresh" onClick="updateBitcoinPrices()">

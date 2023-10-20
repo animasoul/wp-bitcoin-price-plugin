@@ -6,6 +6,7 @@ import {
 	TextControl,
 	ColorPalette,
 	RangeControl,
+	SelectControl,
 } from "@wordpress/components";
 import "./editor.scss";
 
@@ -22,64 +23,91 @@ export default function Edit({ attributes, setAttributes }) {
 			})}
 		>
 			<InspectorControls>
-				<PanelBody title="Bitcoin Price Settings">
+				<PanelBody
+					title={__("Bitcoin Price Settings", "bitcoin-price-component")}
+				>
 					<TextControl
-						label="Label"
+						label={__("Label", "bitcoin-price-component")}
 						value={attributes.label}
 						onChange={(value) => setAttributes({ label: value })}
 					/>
 
+					<SelectControl
+						label={__("Label Level", "bitcoin-price-component")}
+						value={attributes.labelLevel}
+						options={[
+							{ label: "H1", value: "h1" },
+							{ label: "H2", value: "h2" },
+							{ label: "H3", value: "h3" },
+							{ label: "H4", value: "h4" },
+							{ label: "H5", value: "h5" },
+							{ label: "H6", value: "h6" },
+						]}
+						onChange={(newValue) => setAttributes({ labelLevel: newValue })}
+					/>
+
+					<SelectControl
+						label={__("Text Tag", "bitcoin-price-component")}
+						value={attributes.txtHtml}
+						options={[
+							{ label: "p", value: "p" },
+							{ label: "span", value: "span" },
+							{ label: "div", value: "div" },
+						]}
+						onChange={(newValue) => setAttributes({ txtHtml: newValue })}
+					/>
+
 					<TextControl
-						label="Refresh Button Text"
+						label={__("Refresh Button Text", "bitcoin-price-component")}
 						value={attributes.btnText}
 						onChange={(value) => setAttributes({ btnText: value })}
 					/>
 
 					<ToggleControl
-						label="Include Label"
+						label={__("Include Label", "bitcoin-price-component")}
 						checked={attributes.incLabel}
 						onChange={(value) => setAttributes({ incLabel: value })}
 					/>
 
 					<ToggleControl
-						label="Include Refresh Button"
+						label={__("Include Refresh Button", "bitcoin-price-component")}
 						checked={attributes.incBtn}
 						onChange={(value) => setAttributes({ incBtn: value })}
 					/>
 
 					<ToggleControl
-						label="Include USD"
+						label={__("Include USD", "bitcoin-price-component")}
 						checked={attributes.incUSD}
 						onChange={(value) => setAttributes({ incUSD: value })}
 					/>
 
 					<ToggleControl
-						label="Include GBP"
+						label={__("Include GBP", "bitcoin-price-component")}
 						checked={attributes.incGBP}
 						onChange={(value) => setAttributes({ incGBP: value })}
 					/>
 
 					<ToggleControl
-						label="Include EUR"
+						label={__("Include EUR", "bitcoin-price-component")}
 						checked={attributes.incEUR}
 						onChange={(value) => setAttributes({ incEUR: value })}
 					/>
 
 					<ToggleControl
-						label="Include Disclaimer"
+						label={__("Include Disclaimer", "bitcoin-price-component")}
 						checked={attributes.incDisclaimer}
 						onChange={(value) => setAttributes({ incDisclaimer: value })}
 					/>
 
 					<ToggleControl
-						label="Include Update Time"
+						label={__("Include Update Time", "bitcoin-price-component")}
 						checked={attributes.incUpdateTime}
 						onChange={(value) => setAttributes({ incUpdateTime: value })}
 					/>
 				</PanelBody>
 				<PanelBody title="Styling Settings">
 					<div>
-						<label>Background Color:</label>
+						<label>{__("Background Color:", "bitcoin-price-component")}</label>
 						<ColorPalette
 							value={attributes.backgroundColor}
 							onChange={(color) => setAttributes({ backgroundColor: color })}
@@ -87,7 +115,7 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</div>
 					<div>
-						<label>Text Color:</label>
+						<label>{__("Text Color:", "bitcoin-price-component")}</label>
 						<ColorPalette
 							value={attributes.textColor}
 							onChange={(color) => setAttributes({ textColor: color })}
@@ -95,7 +123,7 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</div>
 					<div>
-						<label>Font Size:</label>
+						<label>{__("Font Size:", "bitcoin-price-component")}</label>
 						<RangeControl
 							value={attributes.fontSize}
 							onChange={(size) => setAttributes({ fontSize: size })}
@@ -109,8 +137,10 @@ export default function Edit({ attributes, setAttributes }) {
 			<div {...useBlockProps()}>
 				<BitcoinPrice
 					label={attributes.label}
+					labelLevel={attributes.labelLevel}
 					btnText={attributes.btnText}
 					incLabel={attributes.incLabel}
+					txtHtml={attributes.txtHtml}
 					incBtn={attributes.incBtn}
 					incUSD={attributes.incUSD}
 					incGBP={attributes.incGBP}
