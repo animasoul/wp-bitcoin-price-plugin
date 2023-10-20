@@ -1,4 +1,5 @@
 const API_ENDPOINT = "https://api.coindesk.com/v1/bpi/currentprice.json";
+const CURRENCIES = ["USD", "GBP", "EUR"];
 
 function formatCurrency(value, currencyCode) {
 	return new Intl.NumberFormat("en-US", {
@@ -15,6 +16,17 @@ let previousRates = {
 	EUR: null,
 };
 
+function updateRateClass(ratePlaceholder, currentRate, previousRate) {
+	if (previousRate === null) return;
+	if (currentRate > previousRate) {
+		ratePlaceholder.classList.add("increased");
+	} else if (currentRate < previousRate) {
+		ratePlaceholder.classList.add("decreased");
+	} else {
+		ratePlaceholder.classList.add("unchanged");
+	}
+}
+
 window.updateBitcoinPrices = function () {
 	fetch(API_ENDPOINT)
 		.then((response) => {
@@ -27,27 +39,20 @@ window.updateBitcoinPrices = function () {
 			const bitcoinBlocks = document.querySelectorAll(
 				".bitcoin-price-component",
 			);
-			const currencies = ["USD", "GBP", "EUR"];
 
 			bitcoinBlocks.forEach((block) => {
-				currencies.forEach((currency) => {
+				CURRENCIES.forEach((currency) => {
 					const ratePlaceholder = block.querySelector(
 						`[data-currency="${currency}"] .rate-placeholder`,
 					);
 
 					if (data.bpi[currency] && ratePlaceholder) {
-						if (previousRates[currency] !== null) {
-							if (previousRates[currency] < data.bpi[currency].rate_float) {
-								ratePlaceholder.classList.add("increased");
-							} else if (
-								previousRates[currency] > data.bpi[currency].rate_float
-							) {
-								ratePlaceholder.classList.add("decreased");
-							} else {
-								ratePlaceholder.classList.add("unchanged");
-							}
-						}
-						// Remove the classes after 2 seconds
+						updateRateClass(
+							ratePlaceholder,
+							data.bpi[currency].rate_float,
+							previousRates[currency],
+						);
+
 						setTimeout(() => {
 							ratePlaceholder.classList.remove(
 								"increased",
@@ -55,32 +60,34 @@ window.updateBitcoinPrices = function () {
 								"unchanged",
 							);
 						}, 2000);
-					}
-					previousRates[currency] = data.bpi[currency].rate_float;
 
-					ratePlaceholder.textContent = formatCurrency(
-						data.bpi[currency].rate_float,
-						currency,
-					);
+						ratePlaceholder.textContent = formatCurrency(
+							data.bpi[currency].rate_float,
+							currency,
+						);
+						previousRates[currency] = data.bpi[currency].rate_float;
+					}
 				});
 
-				if (data.disclaimer && block.querySelector(".disclaimer-placeholder")) {
-					block.querySelector(".disclaimer-placeholder").textContent =
-						data.disclaimer;
+				const disclaimerPlaceholder = block.querySelector(
+					".disclaimer-placeholder",
+				);
+				if (data.disclaimer && disclaimerPlaceholder) {
+					disclaimerPlaceholder.textContent = data.disclaimer;
 				}
-				if (
-					data.time.updated &&
-					block.querySelector(".updated-time-placeholder")
-				) {
-					block.querySelector(".updated-time-placeholder").textContent =
-						data.time.updated;
+
+				const updatedTimePlaceholder = block.querySelector(
+					".updated-time-placeholder",
+				);
+				if (data.time.updated && updatedTimePlaceholder) {
+					updatedTimePlaceholder.textContent = data.time.updated;
 				}
 			});
 		})
 		.catch((error) => {
 			console.error("Error fetching Bitcoin price:", error);
-			// Optionally, notify the user in a more user-friendly way.
+			// Optionally, provide a more user-friendly notification.
 		});
 };
 
-window.addEventListener("DOMContentLoaded", updateBitcoinPrices);
+window.addEventListener("DOMContentLoaded", window.updateBitcoinPrices);

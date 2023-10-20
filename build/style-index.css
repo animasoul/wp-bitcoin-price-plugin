@@ -13,21 +13,21 @@
   transition: color 0.5s ease-out;
 }
 .bitcoin-price-component .increased::after {
-  content: "↑";
+  content: " ↑";
 }
 .bitcoin-price-component .decreased {
   color: yellow;
   transition: color 0.5s ease-out;
 }
 .bitcoin-price-component .decreased::after {
-  content: "↓";
+  content: " ↓";
 }
 .bitcoin-price-component .unchanged {
   color: green;
   transition: color 0.5s ease-out;
 }
 .bitcoin-price-component .unchanged::after {
-  content: "→";
+  content: " ↔";
 }
 
 /*# sourceMappingURL=style-index.css.map*/
