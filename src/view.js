@@ -9,6 +9,12 @@ function formatCurrency(value, currencyCode) {
 	}).format(value);
 }
 
+let previousRates = {
+	USD: null,
+	GBP: null,
+	EUR: null,
+};
+
 window.updateBitcoinPrices = function () {
 	fetch(API_ENDPOINT)
 		.then((response) => {
@@ -18,7 +24,9 @@ window.updateBitcoinPrices = function () {
 			return response.json();
 		})
 		.then((data) => {
-			const bitcoinBlocks = document.querySelectorAll(".bitcoin-price-block");
+			const bitcoinBlocks = document.querySelectorAll(
+				".bitcoin-price-component",
+			);
 			const currencies = ["USD", "GBP", "EUR"];
 
 			bitcoinBlocks.forEach((block) => {
@@ -26,12 +34,34 @@ window.updateBitcoinPrices = function () {
 					const ratePlaceholder = block.querySelector(
 						`[data-currency="${currency}"] .rate-placeholder`,
 					);
+
 					if (data.bpi[currency] && ratePlaceholder) {
-						ratePlaceholder.textContent = formatCurrency(
-							data.bpi[currency].rate_float,
-							currency,
-						);
+						if (previousRates[currency] !== null) {
+							if (previousRates[currency] < data.bpi[currency].rate_float) {
+								ratePlaceholder.classList.add("increased");
+							} else if (
+								previousRates[currency] > data.bpi[currency].rate_float
+							) {
+								ratePlaceholder.classList.add("decreased");
+							} else {
+								ratePlaceholder.classList.add("unchanged");
+							}
+						}
+						// Remove the classes after 2 seconds
+						setTimeout(() => {
+							ratePlaceholder.classList.remove(
+								"increased",
+								"decreased",
+								"unchanged",
+							);
+						}, 2000);
 					}
+					previousRates[currency] = data.bpi[currency].rate_float;
+
+					ratePlaceholder.textContent = formatCurrency(
+						data.bpi[currency].rate_float,
+						currency,
+					);
 				});
 
 				if (data.disclaimer && block.querySelector(".disclaimer-placeholder")) {

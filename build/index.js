@@ -265,7 +265,7 @@ function Save({
   const TextTag = attributes.txtHtml || "p";
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps,
-    className: "bitcoin-price-block"
+    className: "bitcoin-price-component"
   }, attributes.incLabel && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LabelLevel, {
     className: "bpc-label"
   }, attributes.label), attributes.incUpdateTime && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextTag, {
@@ -273,14 +273,17 @@ function Save({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Updated:", "bitcoin-price-component")), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "updated-time-placeholder"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Loading...", "bitcoin-price-component"))), attributes.incUSD && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextTag, {
+    className: "bpc-USD",
     "data-currency": "USD"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "USD:"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "rate-placeholder"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Loading...", "bitcoin-price-component"))), attributes.incGBP && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextTag, {
+    className: "bpc-GBP",
     "data-currency": "GBP"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "GBP:"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "rate-placeholder"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Loading...", "bitcoin-price-component"))), attributes.incEUR && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextTag, {
+    className: "bpc-EUR",
     "data-currency": "EUR"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "EUR:"), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "rate-placeholder"
@@ -372,8 +375,14 @@ const BitcoinPrice = (props) => {
             const newData = response.data;
             const newStatus = {};
             ["USD", "GBP", "EUR"].forEach((currency) => {
-                if (prevRatesRef.current[currency] !== newData.bpi[currency].rate_float) {
-                    newStatus[currency] = "changed";
+                if (prevRatesRef.current[currency] === undefined) {
+                    newStatus[currency] = "";
+                }
+                else if (prevRatesRef.current[currency] < newData.bpi[currency].rate_float) {
+                    newStatus[currency] = "increased";
+                }
+                else if (prevRatesRef.current[currency] > newData.bpi[currency].rate_float) {
+                    newStatus[currency] = "decreased";
                 }
                 else {
                     newStatus[currency] = "unchanged";
@@ -420,7 +429,7 @@ const BitcoinPrice = (props) => {
                         react_1.default.createElement("strong", null,
                             currencyCode,
                             ": "),
-                        react_1.default.createElement("span", { dangerouslySetInnerHTML: {
+                        react_1.default.createElement("span", { className: "rate-placeholder", dangerouslySetInnerHTML: {
                                 __html: data.bpi[currencyCode].symbol,
                             } }),
                         formatCurrency(data.bpi[currencyCode].rate_float)));

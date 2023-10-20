@@ -12,7 +12,7 @@ export default function Save({ attributes }) {
 	const LabelLevel = attributes.labelLevel || "h3";
 	const TextTag = attributes.txtHtml || "p";
 	return (
-		<div {...blockProps} className="bitcoin-price-block">
+		<div {...blockProps} className="bitcoin-price-component">
 			{attributes.incLabel && (
 				<LabelLevel className="bpc-label">{attributes.label}</LabelLevel>
 			)}
@@ -25,7 +25,7 @@ export default function Save({ attributes }) {
 				</TextTag>
 			)}
 			{attributes.incUSD && (
-				<TextTag data-currency="USD">
+				<TextTag className="bpc-USD" data-currency="USD">
 					<strong>USD:</strong>{" "}
 					<span className="rate-placeholder">
 						{__("Loading...", "bitcoin-price-component")}
@@ -33,7 +33,7 @@ export default function Save({ attributes }) {
 				</TextTag>
 			)}
 			{attributes.incGBP && (
-				<TextTag data-currency="GBP">
+				<TextTag className="bpc-GBP" data-currency="GBP">
 					<strong>GBP:</strong>{" "}
 					<span className="rate-placeholder">
 						{__("Loading...", "bitcoin-price-component")}
@@ -41,7 +41,7 @@ export default function Save({ attributes }) {
 				</TextTag>
 			)}
 			{attributes.incEUR && (
-				<TextTag data-currency="EUR">
+				<TextTag className="bpc-EUR" data-currency="EUR">
 					<strong>EUR:</strong>{" "}
 					<span className="rate-placeholder">
 						{__("Loading...", "bitcoin-price-component")}
