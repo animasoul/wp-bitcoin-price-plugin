@@ -4,6 +4,8 @@
 
 A custom Gutenberg block developed by Abel Rogers of AJ Partners Ltd. that integrates with the Coindesk API to fetch and display the current Bitcoin prices in USD, GBP, and EUR. This block provides the ability to configure visibility for various elements like the refresh button, different currencies, disclaimer, and more. Moreover, styling settings allow users to adjust the block's appearance.
 
+This plugin was built based on a React component i created which can be found here [GitHub Repository for NPM Component](https://github.com/animasoul/bitcoin-price-component)
+
 ## Features
 
 - **Display Bitcoin Price:** Fetch and display real-time Bitcoin prices from Coindesk in various currencies.
