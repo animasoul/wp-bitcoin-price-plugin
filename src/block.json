@@ -13,6 +13,10 @@
 		"html": false
 	},
 	"attributes": {
+		"containerTag": {
+			"type": "string",
+			"default": "div"
+		},
 		"label": {
 			"type": "string",
 			"default": "Current Bitcoin Prices:"
@@ -66,6 +70,26 @@
 		"fontSize": {
 			"type": "number",
 			"default": 16
+		},
+		"fontSizeUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"paddingValue": {
+			"type": "number",
+			"default": 10
+		},
+		"paddingUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marinValue": {
+			"type": "number",
+			"default": 10
+		},
+		"marginUnit": {
+			"type": "string",
+			"default": "px"
 		}
 	},
 	"textdomain": "bitcoin-price-component",

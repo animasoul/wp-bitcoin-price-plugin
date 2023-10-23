@@ -18,7 +18,9 @@ export default function Edit({ attributes, setAttributes }) {
 				style: {
 					backgroundColor: attributes.backgroundColor,
 					color: attributes.textColor,
-					fontSize: `${attributes.fontSize}px`,
+					fontSize: `${attributes.fontSize}${attributes.fontSizeUnit}`,
+					padding: `${attributes.paddingValue}${attributes.paddingUnit}`,
+					margin: `${attributes.marginValue}${attributes.marginUnit}`,
 				},
 			})}
 		>
@@ -26,6 +28,15 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelBody
 					title={__("Bitcoin Price Settings", "bitcoin-price-component")}
 				>
+					<SelectControl
+						label={__("Container Tag", "bitcoin-price-component")}
+						value={attributes.containerTag}
+						options={[
+							{ label: "div", value: "div" },
+							{ label: "span", value: "span" },
+						]}
+						onChange={(newValue) => setAttributes({ containerTag: newValue })}
+					/>
 					<TextControl
 						label={__("Label", "bitcoin-price-component")}
 						value={attributes.label}
@@ -106,36 +117,82 @@ export default function Edit({ attributes, setAttributes }) {
 					/>
 				</PanelBody>
 				<PanelBody title="Styling Settings">
+					<RangeControl
+						label={__("Padding Value", "bitcoin-price-component")}
+						value={attributes.paddingValue}
+						onChange={(value) => setAttributes({ paddingValue: value || 0 })}
+						min={0}
+						max={100}
+					/>
+					<SelectControl
+						label={__("Padding Unit", "bitcoin-price-component")}
+						value={attributes.paddingUnit}
+						options={[
+							{ label: "px", value: "px" },
+							{ label: "em", value: "em" },
+							{ label: "%", value: "%" },
+						]}
+						onChange={(value) => setAttributes({ paddingUnit: value })}
+					/>
+
+					<RangeControl
+						label={__("Margin Value", "bitcoin-price-component")}
+						value={attributes.marginValue}
+						onChange={(value) => setAttributes({ marginValue: value || 0 })}
+						min={0}
+						max={100}
+					/>
+					<SelectControl
+						label={__("Margin Unit", "bitcoin-price-component")}
+						value={attributes.marginUnit}
+						options={[
+							{ label: "px", value: "px" },
+							{ label: "em", value: "em" },
+							{ label: "rem", value: "rem" },
+						]}
+						onChange={(value) => setAttributes({ marginUnit: value })}
+					/>
 					<div>
-						<label>{__("Background Color:", "bitcoin-price-component")}</label>
+						<label>{__("Background Color", "bitcoin-price-component")}</label>
 						<ColorPalette
+							label={__("Background Color", "bitcoin-price-component")}
 							value={attributes.backgroundColor}
 							onChange={(color) => setAttributes({ backgroundColor: color })}
 							clearable={true}
 						/>
 					</div>
 					<div>
-						<label>{__("Text Color:", "bitcoin-price-component")}</label>
+						<label>{__("Text Color", "bitcoin-price-component")}</label>
 						<ColorPalette
+							label={__("Text Color", "bitcoin-price-component")}
 							value={attributes.textColor}
 							onChange={(color) => setAttributes({ textColor: color })}
 							clearable={true}
 						/>
 					</div>
-					<div>
-						<label>{__("Font Size:", "bitcoin-price-component")}</label>
-						<RangeControl
-							value={attributes.fontSize}
-							onChange={(size) => setAttributes({ fontSize: size })}
-							min={10}
-							max={50}
-						/>
-					</div>
+					<RangeControl
+						label={__("Font Size", "bitcoin-price-component")}
+						value={attributes.fontSize}
+						onChange={(size) => setAttributes({ fontSize: size })}
+						min={0}
+						max={50}
+					/>
+					<SelectControl
+						label={__("Font Size Unit", "bitcoin-price-component")}
+						value={attributes.fontSizeUnit}
+						options={[
+							{ label: "px", value: "px" },
+							{ label: "em", value: "em" },
+							{ label: "%", value: "%" },
+						]}
+						onChange={(value) => setAttributes({ fontSizeUnit: value })}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<div {...useBlockProps()}>
 				<BitcoinPrice
+					containerTag={attributes.containerTag}
 					label={attributes.label}
 					labelLevel={attributes.labelLevel}
 					btnText={attributes.btnText}

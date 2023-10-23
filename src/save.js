@@ -6,13 +6,16 @@ export default function Save({ attributes }) {
 		style: {
 			backgroundColor: attributes.backgroundColor,
 			color: attributes.textColor,
-			fontSize: `${attributes.fontSize}px`,
+			fontSize: `${attributes.fontSize}${attributes.fontSizeUnit}`,
+			padding: `${attributes.paddingValue}${attributes.paddingUnit}`,
+			margin: `${attributes.marginValue}${attributes.marginUnit}`,
 		},
 	});
 	const LabelLevel = attributes.labelLevel || "h3";
 	const TextTag = attributes.txtHtml || "p";
+	const ContainerTag = attributes.containerTag || "div";
 	return (
-		<div {...blockProps} className="bitcoin-price-component">
+		<ContainerTag {...blockProps} className="bitcoin-price-component">
 			{attributes.incLabel && (
 				<LabelLevel className="bpc-label">{attributes.label}</LabelLevel>
 			)}
@@ -61,6 +64,6 @@ export default function Save({ attributes }) {
 					{attributes.btnText}
 				</button>
 			)}
-		</div>
+		</ContainerTag>
 	);
 }
