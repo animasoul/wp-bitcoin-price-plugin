@@ -116,7 +116,7 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={(value) => setAttributes({ incUpdateTime: value })}
 					/>
 				</PanelBody>
-				<PanelBody title="Styling Settings">
+				<PanelBody title={__("Styling Settings", "bitcoin-price-component")}>
 					<RangeControl
 						label={__("Padding Value", "bitcoin-price-component")}
 						value={attributes.paddingValue}
@@ -173,7 +173,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<RangeControl
 						label={__("Font Size", "bitcoin-price-component")}
 						value={attributes.fontSize}
-						onChange={(size) => setAttributes({ fontSize: size })}
+						onChange={(size) => setAttributes({ fontSize: size || 12 })}
 						min={0}
 						max={50}
 					/>

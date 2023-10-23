@@ -154,7 +154,7 @@ function Edit({
       incUpdateTime: value
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Styling Settings"
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Styling Settings", "bitcoin-price-component")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Padding Value", "bitcoin-price-component"),
     value: attributes.paddingValue,
@@ -221,7 +221,7 @@ function Edit({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Font Size", "bitcoin-price-component"),
     value: attributes.fontSize,
     onChange: size => setAttributes({
-      fontSize: size
+      fontSize: size || 12
     }),
     min: 0,
     max: 50
@@ -3985,7 +3985,7 @@ module.exports = axios;
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"abel-blocks/bitcoin-price-component","version":"0.1.0","title":"Bitcoin Price Component","category":"widgets","icon":"smiley","description":"A simple Bitcoin price component to display latest prices.","keywords":["bitcoin","price","component"],"example":{},"supports":{"html":false},"attributes":{"containerTag":{"type":"string","default":"div"},"label":{"type":"string","default":"Current Bitcoin Prices:"},"labelLevel":{"type":"string","default":"h3"},"btnText":{"type":"string","default":"Refresh"},"incLabel":{"type":"boolean","default":true},"txtHtml":{"type":"string","default":"p"},"incBtn":{"type":"boolean","default":true},"incUSD":{"type":"boolean","default":true},"incGBP":{"type":"boolean","default":true},"incEUR":{"type":"boolean","default":true},"incDisclaimer":{"type":"boolean","default":true},"incUpdateTime":{"type":"boolean","default":true},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"fontSize":{"type":"number","default":16},"fontSizeUnit":{"type":"string","default":"px"},"paddingValue":{"type":"number","default":10},"paddingUnit":{"type":"string","default":"px"},"marinValue":{"type":"number","default":10},"marginUnit":{"type":"string","default":"px"}},"textdomain":"bitcoin-price-component","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"abel-blocks/bitcoin-price-component","version":"0.1.0","title":"Bitcoin Price Component","category":"widgets","icon":"smiley","description":"A simple Bitcoin price component to display latest prices.","keywords":["bitcoin","price","component"],"example":{},"supports":{"html":false,"align":["wide","full"],"multiple":true,"customClassName":true,"anchor":true,"reusable":true,"position":{"left":true,"center":true,"right":true,"wide":true,"full":true}},"attributes":{"containerTag":{"type":"string","default":"div"},"label":{"type":"string","default":"Current Bitcoin Prices:"},"labelLevel":{"type":"string","default":"h3"},"btnText":{"type":"string","default":"Refresh"},"incLabel":{"type":"boolean","default":true},"txtHtml":{"type":"string","default":"p"},"incBtn":{"type":"boolean","default":true},"incUSD":{"type":"boolean","default":true},"incGBP":{"type":"boolean","default":true},"incEUR":{"type":"boolean","default":true},"incDisclaimer":{"type":"boolean","default":true},"incUpdateTime":{"type":"boolean","default":true},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"fontSize":{"type":"number","default":16},"fontSizeUnit":{"type":"string","default":"px"},"paddingValue":{"type":"number","default":10},"paddingUnit":{"type":"string","default":"px"},"marinValue":{"type":"number","default":10},"marginUnit":{"type":"string","default":"px"}},"textdomain":"bitcoin-price-component","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

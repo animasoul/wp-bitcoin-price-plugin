@@ -14,7 +14,22 @@
   ],
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "multiple": true,
+    "customClassName": true,
+    "anchor": true,
+    "reusable": true,
+    "position": {
+      "left": true,
+      "center": true,
+      "right": true,
+      "wide": true,
+      "full": true
+    }
   },
   "attributes": {
     "containerTag": {
