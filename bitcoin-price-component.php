@@ -4,7 +4,7 @@
  * Description:       A simple plugin to display the current price of Bitcoin.
  * Requires at least: 6.1
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           0.2.0
  * Author:            Abel Rogers
  * Author URI:		  https://www.ajpartnersltd.com.com
  * Plugin URI:        https://www.ajpartnersltd.com.com

@@ -89,15 +89,15 @@
 		},
 		"paddingValue": {
 			"type": "number",
-			"default": 10
+			"default": 0
 		},
 		"paddingUnit": {
 			"type": "string",
 			"default": "px"
 		},
-		"marinValue": {
+		"marginValue": {
 			"type": "number",
-			"default": 10
+			"default": 0
 		},
 		"marginUnit": {
 			"type": "string",
