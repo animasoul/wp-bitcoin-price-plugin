@@ -1,4 +1,4 @@
-![AJ Partners Ltd. Logo](https://www.ajpartnersltd.com/wp-content/uploads/2023/03/aj-partners-ltd-low-resolution-logo-color-on-transparent-background2.png)
+![AJ Partners Ltd. Logo](https://www.ajpartnersltd.com/wp-content/uploads/2023/10/Untitled.jpg)
 
 # Bitcoin Price Gutenberg Block by AJ Partners Ltd.
 
