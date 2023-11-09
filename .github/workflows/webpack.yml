@@ -23,6 +23,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Build
-        run: |
-          npm run build
-          npm run plugin-zip
+        run: npm build
+      - name: Plugin-Zip
+        run: npm plugin-zip
